@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
 
 public class WebScraper {
     /**
@@ -21,11 +23,20 @@ public class WebScraper {
         return contents;
     }
     public static int wordScanner(final String url) {
-        return (urlToString(url).split("")).length;
+        return (urlToString(url).split(" ")).length;
+    }
+    public static int uniqueWord(final String url) {
+        Set set = new HashSet<String>();
+        String[] words = urlToString(url).split(" ");
+        for(String str: words) {
+            set.add(str);
+        }
+        return set.size();
     }
     public static void main(String[] unused) {
         System.out.println(urlToString("http://erdani.com/tdpl/hamlet.txt"));
         System.out.println(wordScanner("http://erdani.com/tdpl/hamlet.txt"));
+        System.out.println(uniqueWord("http://erdani.com/tdpl/hamlet.txt"));
 
     }
 }
